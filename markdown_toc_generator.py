@@ -22,16 +22,19 @@ def generate_toc(fname):
     #delete old toc and top data
     for inx,e in enumerate(lines[2:]):
         new_lines.append(re.sub('(- \[.*\]\(.*\)\n)','', e))
-    print(new_lines)
+    #print(new_lines)
 
     headers = [e.rstrip() for e in new_lines if re.match(r'#+', e)]
-    print(headers)
+    #print(headers)
     #find top_level
     for i,h in enumerate(headers):
         ln = len(re.search(r'^#+',h).group(0))
         top_level = ln if ln < top_level else top_level
         headers[i] = re.sub(r'^#+\s*', str(ln)+' ', h)
+        print(headers[i])
+        print(type(headers))
     headers = [tr_header(h) for h in headers]
+
     with open(fname,'w') as f:
         f.write(TOC+'\n')
         f.write(ADD + '\n')
@@ -41,6 +44,6 @@ def generate_toc(fname):
 def tr_header(header):
     global lnk_temp
     lvl, txt = re.findall(r'^(\d+) (.*)', header)[0]
-    return lnk_temp%((int(lvl)-top_level)*'    ', txt, re.sub(' ','-',txt))
+    return lnk_temp%((int(lvl)-top_level)*'    ', txt, re.sub('[^a-zA-Z0-9\u4e00-\u9fa5]','-',txt))#非中文英文数字的替换成-
 
 generate_toc("README.md")
