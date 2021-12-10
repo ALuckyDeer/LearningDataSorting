@@ -1,14 +1,12 @@
-#!/usr/bin/env python
 # -*- coding: gbk -*-
 
 #####################################################
-# modified by LZJ
-# can add chinese characters
+# 每次直接在readme下面直接添加#标题，然后执行markdown_toc_generator.py就能直接更新readme，TOC和ADD可以改内容，但是别增加或减少
+# TOC和ADD加起来一共就两条，再加添加别的抬头的话下面的数组起始位置也要改
+# 手动删除抬头和toc之后，需要手动加上两行回车让正文从第三行开始，因为下面的数组是从第三行开始取的
 #####################################################
 
 import re
-import sys
-import shutil,datetime
 
 top_level=77
 lnk_temp='%s- [%s](#%s)'
@@ -17,13 +15,17 @@ ADD='(拒绝拖延!!!)'
 def generate_toc(fname):
     global top_level
     lines = []
+    new_lines = []
     with open(fname,encoding='gbk') as file:
         lines = file.readlines()
-    # ts = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    # destf= '.'.join((fname,ts,'bak'))
-    # shutil.copy(fname, destf)
-    # print ("Backup was created: [%s]"%destf)
-    headers = [e.rstrip() for e in lines if re.match(r'#+', e)]
+
+    #delete old toc and top data
+    for inx,e in enumerate(lines[2:]):
+        new_lines.append(re.sub('(- \[.*\]\(.*\)\n)','', e))
+    print(new_lines)
+
+    headers = [e.rstrip() for e in new_lines if re.match(r'#+', e)]
+    print(headers)
     #find top_level
     for i,h in enumerate(headers):
         ln = len(re.search(r'^#+',h).group(0))
@@ -34,22 +36,11 @@ def generate_toc(fname):
         f.write(TOC+'\n')
         f.write(ADD + '\n')
         f.write('\n'.join(headers) + '\n')
-        f.write(''.join(lines) + '\n')
-        f.write('\n\n')
-
+        f.write(''.join(new_lines))
 
 def tr_header(header):
     global lnk_temp
     lvl, txt = re.findall(r'^(\d+) (.*)', header)[0]
-    # return lnk_temp%((int(lvl)-top_level)*'    ', txt, re.sub(' ','-',re.sub('[^-a-z0-9 ]','',txt.lower())))
     return lnk_temp%((int(lvl)-top_level)*'    ', txt, re.sub(' ','-',txt))
 
-if __name__ == '__main__':
-    if len(sys.argv)<2:
-        print("""
-            Usage:
-            toc.py <markdown file>
-        """)
-    else:
-        infile = sys.argv[1]
-        generate_toc(infile)
+generate_toc("README.md")
