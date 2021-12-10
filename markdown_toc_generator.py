@@ -10,7 +10,7 @@ import re
 
 top_level=77
 lnk_temp='%s- [%s](#%s)'
-TOC='#### 机器学习经验整理'
+TOC='# 机器学习经验整理'
 ADD='(拒绝拖延!!!)'
 def generate_toc(fname):
     global top_level
