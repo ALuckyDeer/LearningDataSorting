@@ -3,22 +3,22 @@
 - [机器学习模型中的两类参数](#机器学习模型中的两类参数)
 - [参数和超参数的区别](#参数和超参数的区别)
 - [哪些属于超参数](#哪些属于超参数)
-- [torch.randn()](#torch.randn())
-- [计算机视觉模型库-Pytorch Image Models (timm)](#计算机视觉模型库-Pytorch-Image-Models-(timm))
-- [jupyer的感叹号!用于执行来自操作系统的命令](#jupyer的感叹号!用于执行来自操作系统的命令)
+- [torch.randn()](#torch-randn--)
+- [计算机视觉模型库-Pytorch Image Models (timm)](#计算机视觉模型库-Pytorch-Image-Models--timm-)
+- [jupyer的感叹号!用于执行来自操作系统的命令](#jupyer的感叹号-用于执行来自操作系统的命令)
 - [BCELoss和BCEWithLogitsLoss](#BCELoss和BCEWithLogitsLoss)
 - [k-交叉验证KFold](#k-交叉验证KFold)
-- [*args 与 **kwargs 的区别，两者都是 python 中的可变参数](#*args-与-**kwargs-的区别，两者都是-python-中的可变参数)
+- [*args 与 **kwargs 的区别，两者都是 python 中的可变参数](#-args-与---kwargs-的区别-两者都是-python-中的可变参数)
 - [KFlod取值问题](#KFlod取值问题)
 - [test](#test)
-- ["test"](#"test")
-- [我吃饭了：1](#我吃饭了：1)
-- [我吃饭了:2](#我吃饭了:2)
+- ["test"](#-test-)
+- [我吃饭了：1](#我吃饭了-1)
+- [我吃饭了:2](#我吃饭了-2)
 - [test 1](#test-1)
-    - [test 1](#test-1)
-- [test,2](#test,2)
-- [test，3](#test，3)
-            
+- [test 1](#test-1)
+- [test,2](#test-2)
+- [test，3](#test-3)
+                    
 # 机器学习模型中的两类参数 
 一类需要从数据中学习和估计得到，称为模型参数（Parameter）---即模型本身的参数。比如，线性回归直线的加权系数（斜率）及其偏差项（截距）都是模型参数。  
 还有一类则是机器学习算法中的调优参数（tuning parameters），需要人为设定，称为超参数（Hyperparameter）。比如，正则化系数λ，决策树模型中树的深度。
@@ -128,7 +128,7 @@ qq
 ww
 # test 1
 ss
-## test 1
+# test 1
 tt
 # test,2
 ff

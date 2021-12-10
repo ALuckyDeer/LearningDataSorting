@@ -31,8 +31,6 @@ def generate_toc(fname):
         ln = len(re.search(r'^#+',h).group(0))
         top_level = ln if ln < top_level else top_level
         headers[i] = re.sub(r'^#+\s*', str(ln)+' ', h)
-        print(headers[i])
-        print(type(headers))
     headers = [tr_header(h) for h in headers]
 
     with open(fname,'w') as f:
