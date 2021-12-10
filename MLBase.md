@@ -75,3 +75,22 @@ https://www.cnblogs.com/loubin/p/11305565.html
 * 为什么还要进行所有数据集重新训练，是否太浪费时间？
 
 >我们通过K-Fold 多次划分的形式进行训练是为了获取某个模型的性能指标，单一K-Fold训练的模型无法表示总体性能，但是我们可以通过K-Fold训练的训练记录下来较为优异的超参数，然后再以最优模型最优参数进行重新训练，将会取得更优结果。 也可以采取方法一的方式不再进行训练使用模型融合的方式。
+
+# *args 与 **kwargs 的区别，两者都是 python 中的可变参数：
+*args 和**kwargs可以写成任意形式
+*args 表示任何多个无名参数，它本质是一个 tuple
+**kwargs 表示关键字参数，它本质上是一个 dict
+如果同时使用 *args 和 **kwargs 时，必须 *args 参数列要在 **kwargs 之前。
+
+```
+>>>def fun(*args, **kwargs):
+print('args=', args)
+print('kwargs=', kwargs)
+```
+
+```
+>>>fun(1, 2, 3, 4, A='a', B='b', C='c', D='d')
+args= (1, 2, 3, 4)
+kwargs= {'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd'}
+```
+
