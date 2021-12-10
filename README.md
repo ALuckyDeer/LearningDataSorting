@@ -4,7 +4,7 @@
 - [参数和超参数的区别](#参数和超参数的区别)
 - [哪些属于超参数](#哪些属于超参数)
 - [torch.randn()](#torch.randn())
-- [计算机视觉模型库–Pytorch Image Models (timm)](#计算机视觉模型库–Pytorch-Image-Models-(timm))
+- [计算机视觉模型库-Pytorch Image Models (timm)](#计算机视觉模型库-Pytorch-Image-Models-(timm))
 - [jupyer的感叹号!用于执行来自操作系统的命令](#jupyer的感叹号!用于执行来自操作系统的命令)
 - [BCELoss和BCEWithLogitsLoss](#BCELoss和BCEWithLogitsLoss)
 - [k-交叉验证KFold](#k-交叉验证KFold)
@@ -47,7 +47,7 @@ b: tensor([[-1.0962, -0.1893,  1.2323,  0.5703],
         [ 1.1200,  0.5317,  1.1961, -2.2533]])
 ```
 
-# 计算机视觉模型库–Pytorch Image Models (timm)
+# 计算机视觉模型库-Pytorch Image Models (timm)
 "timm"是由Ross Wightman创建的深度学习库，是一个关于SOTA的计算机视觉模型、层、实用工具、optimizers, schedulers, data-loaders, augmentations，可以复现ImageNet训练结果的训练/验证代码。
 https://fastai.github.io/timmdocs/  
 
