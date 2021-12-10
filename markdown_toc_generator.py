@@ -16,7 +16,7 @@ def generate_toc(fname):
     global top_level
     lines = []
     new_lines = []
-    with open(fname,encoding='gbk') as file:
+    with open(fname,'r',encoding='gbk') as file:
         lines = file.readlines()
 
     #delete old toc and top data
