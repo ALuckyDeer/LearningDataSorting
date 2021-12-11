@@ -47,7 +47,7 @@ https://fastai.github.io/timmdocs/
 
 # BCELoss和BCEWithLogitsLoss
 
-![](img/img1.png)![](img/img2.png)
+![](../img/img1.png)![](../img/img2.png)
 BCEWithLogitsLoss函数包括了 Sigmoid 层和 BCELoss 层. 适用于多标签分类任务
 
 CrossEntropyLoss函数 包含Softmax,层和 NLLLoss层,适用于单标签分类问题
@@ -115,7 +115,7 @@ github:https://github.com/tomgoldstein/loss-landscape
 
 神经网络的损失函数地图（loss landscape）（下图所示）是网络参数值的函数，当在特定数据集上执行推断（预测）时量化与使用特定参数配置相关的「误差」。这个损失地图可能对于很相似的网络架构也看起来很不同。下图来自论文《Visualizing the Loss Landscape of Neural Nets》，其中展示了残差连接可产生更平滑的拓扑结构。
 
-![](img/img3.png)
+![](../img/img3.png)
 
 # KFold与StratifiedKFold
 StratifiedKFold用法类似Kfold，但是他是分层采样，确保训练集，测试集中各类别样本的比例与原始数据集中相同。
@@ -133,8 +133,8 @@ random_state：默认为None，表示随机数的种子，只有当shuffle设置
 # 斯透奇斯规则(Sturges'rule)
 组距分组时,根据数据个数n确定组数m的经验公式,直方图分组用这个比较河里，这很河里
 统计学书中提到了一个帮助确定组数的经验公式：斯透奇斯规则(Sturges'rule),m=1+3.322lgN,(N为总次数)
-![](img/img_2.png)
-![](img/img_5.png)![](img/img_6.png)
+![](../img/img_2.png)
+![](../img/img_5.png)![](../img/img_6.png)
 
 # 数据分箱之pd.cut()
 pd.cut( x, bins, right=True, labels=None, retbins=False, precision=3, include_lowest=False, duplicates='raise', )
@@ -163,13 +163,13 @@ pd.cut( x, bins, right=True, labels=None, retbins=False, precision=3, include_lo
 
 * duplicates：如果分箱临界值不唯一，则引发ValueError或丢弃非唯一
 # reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。
-![](img/img_3.png)
+![](../img/img_3.png)
 
 
 numpy库官网的介绍，这里的-1被理解为unspecified value，意思是未指定为给定的。如果我只需要特定的行数，列数多少我无所谓，我只需要指定行数，那么列数直接用-1代替就行了，计算机帮我们算赢有多少列，反之亦然。
 
 所以-1在这里应该可以理解为一个正整数通配符，它代替任何整数。
-![](img/img_4.png)
+![](../img/img_4.png)
 
 # 交叉验证详解
 >重点：
@@ -185,9 +185,9 @@ https://www.cnblogs.com/henuliulei/p/13686046.html
 
 # 交叉验证如何取K值？
 2017年的一项研究给出了另一种经验式的选择方法，研究见下面的论文，作者建议 
-![](img/img_8.png)
+![](../img/img_8.png)
 且保证 
-![img.png](img.png)
+![](../img/img_9.png)
  ，此处的n代表了数据量，d代表了特征数。  
 来自Journal of Nonparametric Statistics的  
 paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](Multiple predicting K-fold cross-validation for model selection.pdf)  

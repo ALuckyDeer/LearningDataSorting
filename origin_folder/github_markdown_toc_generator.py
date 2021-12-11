@@ -67,7 +67,7 @@ def detectHeadLines(f):
 
 if __name__ == '__main__':
 
-    file_name = "origin_readme.md"
+    file_name = "../origin_readme.md"
     #file_name = "origin_fastai_summary.md"
 
 

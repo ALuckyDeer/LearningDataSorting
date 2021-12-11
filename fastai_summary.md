@@ -12,11 +12,11 @@ Fit self.model for n_epoch using the 1cycle policy.
 其次，当loss曲线向上扬即变大的时候，开始减小学习率，慢慢的趋近梯度最小值，loss也会慢慢减小。就如下图：
 图为课程中的图
 
-![](img/img.png)
+![](../img/img.png)
 
 该图x轴为迭代次数，y轴为学习率
 
-![](img/img_1.png)
+![](../img/img_1.png)
 
 该图x轴为迭代次数，y轴为loss
 
@@ -31,7 +31,7 @@ Fit self.model for n_epoch using the 1cycle policy.
 fastai开发文档的超参数明细表:https://docs.fast.ai/callback.schedule.html#ParamScheduler
 学习率在每个周期开始时重置为参数输入时的初始值，余弦退火部分描述的那样，逐渐减小
 
-![](img/img_7.png)
+![](../img/img_7.png)
 这个链接的东西非常好：但是经过实验，发现fit里面的cycle已经舍弃了
 在fastai2 里面Learner.fit(n_epoch, lr=None, wd=None, cbs=None, reset_opt=False)
 cbs我感觉是combine_schedes
