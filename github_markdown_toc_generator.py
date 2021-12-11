@@ -66,9 +66,15 @@ def detectHeadLines(f):
 
 
 if __name__ == '__main__':
-    filename = "origin_readme.md"
-    f = open(filename, 'r', encoding='utf-8')
+
+    file_name = "origin_readme.md"
+    #file_name = "origin_fastai_summary.md"
+
+
+    f = open(file_name, 'r', encoding='utf-8')
     insert_str = detectHeadLines(f)
     f.close()
-    with open("README.md", 'w', encoding='utf-8') as f:
+    new_file_name=file_name.split("_")[1]
+    print(new_file_name)
+    with open(new_file_name, 'w', encoding='utf-8') as f:
         f.write(insert_str)
