@@ -133,7 +133,7 @@ random_state：默认为None，表示随机数的种子，只有当shuffle设置
 # 斯透奇斯规则(Sturges'rule)
 组距分组时,根据数据个数n确定组数m的经验公式,直方图分组用这个比较河里，这很河里
 统计学书中提到了一个帮助确定组数的经验公式：    
-斯透奇斯规则(Sturges'rule),m=1+3.322lgN,(N为总次数)  
+斯透奇斯规则(Sturges'rule),m=1+3.322lgN,(N为总次数)    
 ![](../img/img_5.png)
 ![](../img/img_6.png)
 
