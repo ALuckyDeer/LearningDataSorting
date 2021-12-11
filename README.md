@@ -213,7 +213,7 @@ https://www.cnblogs.com/henuliulei/p/13686046.html
 ![](../img/img_9.png)
  ，此处的n代表了数据量，d代表了特征数。  
 来自Journal of Nonparametric Statistics的  
-paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](Multiple predicting K-fold cross-validation for model selection.pdf)  
+paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](paper/Multiple predicting K-fold cross-validation for model selection.pdf)  
 大神讲解：https://zhuanlan.zhihu.com/p/31924220
 # <span id="head19"> 方差、协方差、标准差、均方差、均方根值、均方误差、均方根误差对比分析</span>
 https://blog.csdn.net/cqfdcw/article/details/78173839
@@ -236,7 +236,7 @@ https://blog.csdn.net/cqfdcw/article/details/78173839
 # <span id="head21"> 混合精度训练</span>
 解释: https://blog.csdn.net/u011808673/article/details/82112115  
 paper:
-[MIXED PRECISION TRAINING](paper/MIXED PRECISION TRAINING.pdf)
+[MIXED PRECISION TRAINING](https://github.com/XingKongXiaDeFeng/LearningDataSorting/blob/a01bfb99884d3d5c2098aedc535c206a4c31f056/paper/MIXED%20PRECISION%20TRAINING.pdf)
 
 # <span id="head22"> 正则表达式中的“^“这个符号的一些思考</span>
 只要是"^“这个字符是在中括号”[]“中被使用的话就是表示字符类的否定，如果不是的话就是表示限定开头。我这里说的是直接在”[]“中使用，不包括嵌套使用。
