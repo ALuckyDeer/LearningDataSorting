@@ -1,33 +1,23 @@
-- [ 机器学习经验整理](#head1)
-- [ 机器学习模型中的两类参数](#head2)
-- [ 参数和超参数的区别](#head3)
-- [ 哪些属于超参数](#head4)
-- [ torch.randn()](#head5)
-- [计算机视觉模型库-Pytorch Image Models (timm)](#head6)
-- [ BCELoss和BCEWithLogitsLoss](#head7)
-- [ k-交叉验证KFold](#head8)
-- [*args 与 **kwargs 的区别，两者都是 python 中的可变参数](#head9)
-- [ KFlod取值问题](#head10)
-# <span id="head1"> 机器学习经验整理</span>
+# 机器学习经验整理
 
 (拒绝拖延!!!)
 
-# <span id="head2"> 机器学习模型中的两类参数</span>
+# 机器学习模型中的两类参数
 
 一类需要从数据中学习和估计得到，称为模型参数（Parameter）---即模型本身的参数。比如，线性回归直线的加权系数（斜率）及其偏差项（截距）都是模型参数。
 还有一类则是机器学习算法中的调优参数（tuning parameters），需要人为设定，称为超参数（Hyperparameter）。比如，正则化系数λ，决策树模型中树的深度。
 
-# <span id="head3"> 参数和超参数的区别</span>
+# 参数和超参数的区别
 
 模型参数是模型内部的配置变量，需要用数据估计模型参数的值
 模型超参数是模型外部的配置，需要手动设置超参数的值。
 机器学习中一直说的“调参”，实际上不是调“参数”，而是调“超参数”。
 
-# <span id="head4"> 哪些属于超参数</span>
+# 哪些属于超参数
 
 梯度下降法中的学习速率α，迭代次数epoch，批量大小batch-size，k近邻法中的k（最相近的点的个数），决策树模型中树的深度，等等。
 
-# <span id="head5"> torch.randn()</span>
+# torch.randn()
 
 用来生成随机数字的tensor，这些随机数字满足标准正态分布（0~1）。
 torch.randn（size),size可以是一个整数，也可以是一个元组。
@@ -48,14 +38,14 @@ b: tensor([[-1.0962, -0.1893,  1.2323,  0.5703],
         [ 1.1200,  0.5317,  1.1961, -2.2533]])
 ```
 
-# <span id="head6">计算机视觉模型库-Pytorch Image Models (timm)</span>
+# 计算机视觉模型库-Pytorch Image Models (timm)
 
 "timm"是由Ross Wightman创建的深度学习库，是一个关于SOTA的计算机视觉模型、层、实用工具、optimizers, schedulers, data-loaders, augmentations，可以复现ImageNet训练结果的训练/验证代码。
 https://fastai.github.io/timmdocs/
 
 #jupyer的感叹号!用于执行来自操作系统的命令
 
-# <span id="head7"> BCELoss和BCEWithLogitsLoss</span>
+# BCELoss和BCEWithLogitsLoss
 
 ![](img/img1.png)![](img/img2.png)
 BCEWithLogitsLoss函数包括了 Sigmoid 层和 BCELoss 层. 适用于多标签分类任务
@@ -64,7 +54,7 @@ CrossEntropyLoss函数 包含Softmax,层和 NLLLoss层,适用于单标签分类�
 
 https://blog.csdn.net/qq_22210253/article/details/85222093
 
-# <span id="head8"> k-交叉验证KFold</span>
+# k-交叉验证KFold
 
 KFold 是 sklearn 包中用于交叉验证的函数。在机器学习中，样本量不充足时，通常使用交叉训练验证。
 https://www.cnblogs.com/loubin/p/11305565.html
@@ -84,7 +74,7 @@ https://www.cnblogs.com/loubin/p/11305565.html
 
 > 我们通过K-Fold 多次划分的形式进行训练是为了获取某个模型的性能指标，单一K-Fold训练的模型无法表示总体性能，但是我们可以通过K-Fold训练的训练记录下来较为优异的超参数，然后再以最优模型最优参数进行重新训练，将会取得更优结果。 也可以采取方法一的方式不再进行训练使用模型融合的方式。
 
-# <span id="head9">*args 与 **kwargs 的区别，两者都是 python 中的可变参数</span>
+# *args 与 **kwargs 的区别，两者都是 python 中的可变参数
 
 *args 和**kwargs可以写成任意形式
 *args 表示任何多个无名参数，它本质是一个 tuple
@@ -103,7 +93,7 @@ args= (1, 2, 3, 4)
 kwargs= {'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd'}
 ```
 
-# <span id="head10"> KFlod取值问题</span>
+# KFlod取值问题
 
 运用Kfold交叉验证时，在一个限度内k的值越大越好。因为k越大我们验证的次数就越多，最后取出来的平均数越能代表训练模型的准确度。
 
