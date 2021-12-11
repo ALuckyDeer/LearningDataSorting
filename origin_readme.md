@@ -115,3 +115,4 @@ github:https://github.com/tomgoldstein/loss-landscape
 神经网络的损失函数地图（loss landscape）（下图所示）是网络参数值的函数，当在特定数据集上执行推断（预测）时量化与使用特定参数配置相关的「误差」。这个损失地图可能对于很相似的网络架构也看起来很不同。下图来自论文《Visualizing the Loss Landscape of Neural Nets》，其中展示了残差连接可产生更平滑的拓扑结构。
 
 ![](img/img3.png)
+

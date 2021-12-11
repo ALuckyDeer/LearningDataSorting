@@ -74,7 +74,7 @@ if __name__ == '__main__':
     f = open(file_name, 'r', encoding='utf-8')
     insert_str = detectHeadLines(f)
     f.close()
-    new_file_name=file_name.split("_")[1]
+    new_file_name=file_name.split("origin_")[1]
     print(new_file_name)
     with open(new_file_name, 'w', encoding='utf-8') as f:
         f.write(insert_str)

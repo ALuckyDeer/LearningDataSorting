@@ -9,6 +9,7 @@
 - [*args 与 **kwargs 的区别，两者都是 python 中的可变参数](#head9)
 - [ KFlod取值问题](#head10)
 - [ 泛化能力](#head11)
+- [残差的loss平滑的直观感受-论文《Visualizing the Loss Landscape of Neural Nets》](#head12)
 # <span id="head1"> 机器学习经验整理</span>
 (拒绝拖延!!!)
 
@@ -118,3 +119,12 @@ kwargs= {'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd'}
 泛化能力（generalization ability）是指机器学习算法对新鲜样本的适应能力。学习的目的是学到隐含在数据背后的规律，对具有同一规律的学习集以外的数据，经过训练的网络也能给出合适的输出，该能力称为泛化能力。
 大的batchsize导致模型泛化能力下降
 大的batchsize减少训练时间，提高稳定性
+
+# <span id="head12">残差的loss平滑的直观感受-论文《Visualizing the Loss Landscape of Neural Nets》</span>
+论文链接：[Visualizing the Loss Landscape of Neural Nets](paper/Visualizing the Loss Landscape of Neural Nets.pdf)
+github:https://github.com/tomgoldstein/loss-landscape
+
+神经网络的损失函数地图（loss landscape）（下图所示）是网络参数值的函数，当在特定数据集上执行推断（预测）时量化与使用特定参数配置相关的「误差」。这个损失地图可能对于很相似的网络架构也看起来很不同。下图来自论文《Visualizing the Loss Landscape of Neural Nets》，其中展示了残差连接可产生更平滑的拓扑结构。
+
+![](img/img3.png)
+
