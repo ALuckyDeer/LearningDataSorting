@@ -190,7 +190,7 @@ https://www.cnblogs.com/henuliulei/p/13686046.html
 ![](../img/img_9.png)
  ，此处的n代表了数据量，d代表了特征数。  
 来自Journal of Nonparametric Statistics的  
-paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](Multiple predicting K-fold cross-validation for model selection.pdf)  
+paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](paper/Multiple predicting K-fold cross-validation for model selection.pdf)  
 大神讲解：https://zhuanlan.zhihu.com/p/31924220
 # 方差、协方差、标准差、均方差、均方根值、均方误差、均方根误差对比分析
 https://blog.csdn.net/cqfdcw/article/details/78173839

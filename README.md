@@ -234,10 +234,10 @@ https://blog.csdn.net/cqfdcw/article/details/78173839
 在日常使用过程中，常使用双混合精度训练
 
 # <span id="head21"> 混合精度训练</span>
-解释: https://blog.csdn.net/u011808673/article/details/82112115  
+ 
 paper:
-[MIXED PRECISION TRAINING](https://github.com/XingKongXiaDeFeng/LearningDataSorting/blob/a01bfb99884d3d5c2098aedc535c206a4c31f056/paper/MIXED%20PRECISION%20TRAINING.pdf)
-
+[MIXED PRECISION TRAINING](https://github.com/XingKongXiaDeFeng/LearningDataSorting/blob/a01bfb99884d3d5c2098aedc535c206a4c31f056/paper/MIXED%20PRECISION%20TRAINING.pdf)  
+解释: https://blog.csdn.net/u011808673/article/details/82112115 
 # <span id="head22"> 正则表达式中的“^“这个符号的一些思考</span>
 只要是"^“这个字符是在中括号”[]“中被使用的话就是表示字符类的否定，如果不是的话就是表示限定开头。我这里说的是直接在”[]“中使用，不包括嵌套使用。
 其实也就是说”[]“代表的是一个字符集，”^"只有在字符集中才是反向字符集的意思。
