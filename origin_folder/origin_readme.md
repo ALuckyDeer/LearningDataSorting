@@ -47,7 +47,7 @@ fastai的timm文档：https://fastai.github.io/timmdocs/
 
 # BCELoss和BCEWithLogitsLoss
 
-![](img/img1.png)![](img/img2.png)
+![](../img/img1.png)![](../img/img2.png)
 BCEWithLogitsLoss函数包括了 Sigmoid 层和 BCELoss 层. 适用于多标签分类任务
 
 CrossEntropyLoss函数 包含Softmax,层和 NLLLoss层,适用于单标签分类问题  
@@ -135,7 +135,7 @@ random_state：默认为None，表示随机数的种子，只有当shuffle设置
 统计学书中提到了一个帮助确定组数的经验公式：    
 斯透奇斯规则(Sturges'rule),m=1+3.322lgN,(N为总次数)  
 ![](../img/img_5.png)
-![](img/img_6.png)
+![](../img/img_6.png)
 
 # 数据分箱之pd.cut()
 pd.cut( x, bins, right=True, labels=None, retbins=False, precision=3, include_lowest=False, duplicates='raise', )
@@ -164,12 +164,12 @@ pd.cut( x, bins, right=True, labels=None, retbins=False, precision=3, include_lo
 
 * duplicates：如果分箱临界值不唯一，则引发ValueError或丢弃非唯一
 # reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。
-![](img/img_3.png)
+![](../img/img_3.png)
 
 numpy库官网的介绍，这里的-1被理解为unspecified value，意思是未指定为给定的。如果需要特定的行数，列数多少无所谓，只需要指定行数，那么列数直接用-1代替就行。
 
 所以-1在这里应该可以理解为一个正整数通配符，它代替任何整数。
-![](img/img_4.png)
+![](../img/img_4.png)
 
 # 交叉验证详解
 >重点：
@@ -185,9 +185,9 @@ numpy库官网的介绍，这里的-1被理解为unspecified value，意思是�
 
 # 交叉验证如何取K值？
 2017年的一项研究给出了另一种经验式的选择方法，研究见下面的论文，作者建议 
-![](img/img_8.png)
+![](../img/img_8.png)
 且保证 
-![](img/img_9.png)
+![](../img/img_9.png)
  ，此处的n代表了数据量，d代表了特征数。  
 来自Journal of Nonparametric Statistics的  
 paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](paper/Multiple predicting K-fold cross-validation for model selection.pdf)  
