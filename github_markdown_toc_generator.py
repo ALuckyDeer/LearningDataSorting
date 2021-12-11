@@ -67,13 +67,14 @@ def detectHeadLines(f):
 
 if __name__ == '__main__':
 
-    file_name = "origin_readme.md"
-    #file_name = "origin_fastai_summary.md"
+    #file_name = "origin_readme.md"
+    file_name = "origin_fastai_summary.md"
 
 
     f = open(file_name, 'r', encoding='utf-8')
     insert_str = detectHeadLines(f)
     f.close()
+    #截断origin_开头的文件，以后面的内容当作新md的命名
     new_file_name=file_name.split("origin_")[1]
     print(new_file_name)
     with open(new_file_name, 'w', encoding='utf-8') as f:
