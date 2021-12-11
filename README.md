@@ -210,7 +210,7 @@ https://www.cnblogs.com/henuliulei/p/13686046.html
 2017年的一项研究给出了另一种经验式的选择方法，研究见下面的论文，作者建议 
 ![](../img/img_8.png)
 且保证 
-![img.png](img_9/img.png)
+![](../img/img_9.png)
  ，此处的n代表了数据量，d代表了特征数。  
 来自Journal of Nonparametric Statistics的  
 paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](Multiple predicting K-fold cross-validation for model selection.pdf)  
@@ -245,6 +245,6 @@ https://blog.csdn.net/sufubo/article/details/50990684
 
 # <span id="head23"> *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好</span>
 fastai里面如果不用learn.fit来实现周期性的余弦退火
-下面是论文原地址和keras实现，后期我也会自己写一个
+下面是论文原地址和keras实现，后期我也会自己写一个  
 paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](paper/DECOUPLED WEIGHT DECAY REGULARIZATION.pdf)  
 大佬的讲解：https://blog.csdn.net/qq_38290475/article/details/103548680
