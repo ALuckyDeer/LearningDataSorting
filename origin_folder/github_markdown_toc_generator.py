@@ -1,5 +1,4 @@
-import sys
-
+import os
 headline_dic = {'#': 0, '##': 1, '###': 2, '####': 3, '#####': 4, '######': 5}
 suojin = {0: -1, 1: -1, 2: -1, 3: -1, 4: -1, 5: -1, 6: -1}
 
@@ -64,11 +63,10 @@ def detectHeadLines(f):
 
     return insert_str + org_str
 
-
 if __name__ == '__main__':
 
-    file_name = "origin_readme.md"
-    #file_name = "origin_fastai_summary.md"
+    #file_name = "origin_readme.md"
+    file_name = "origin_fastai_summary.md"
 
 
     f = open(file_name, 'r', encoding='utf-8')
@@ -76,5 +74,7 @@ if __name__ == '__main__':
     f.close()
     #截断origin_开头的文件，以后面的内容当作新md的命名
     new_file_name=file_name.split("origin_")[1]
-    with open("../"+new_file_name, 'w', encoding='utf-8') as f:
+    new_file_name = "../summary/" + new_file_name
+    print(new_file_name)
+    with open(new_file_name, 'w', encoding='utf-8') as f:
         f.write(insert_str)
