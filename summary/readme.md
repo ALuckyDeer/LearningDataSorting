@@ -243,5 +243,5 @@ paper:
 # <span id="head23"> *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好</span>
 fastai里面如果不用learn.fit来实现周期性的余弦退火
 下面是论文原地址和keras实现，后期我也会自己写一个  
-paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](paper/DECOUPLED WEIGHT DECAY REGULARIZATION.pdf)  
+paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DECOUPLED WEIGHT DECAY REGULARIZATION.pdf)  
 详细讲解：https://blog.csdn.net/qq_38290475/article/details/103548680
