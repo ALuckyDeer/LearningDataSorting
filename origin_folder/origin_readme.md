@@ -110,7 +110,7 @@ kwargs= {'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd'}
 大的batchsize减少训练时间，提高稳定性
 
 # 残差的loss平滑的直观感受-论文《Visualizing the Loss Landscape of Neural Nets》
-论文链接：[Visualizing the Loss Landscape of Neural Nets](paper/Visualizing the Loss Landscape of Neural Nets.pdf)  
+论文链接：[Visualizing the Loss Landscape of Neural Nets](../paper/Visualizing the Loss Landscape of Neural Nets.pdf)  
 github:https://github.com/tomgoldstein/loss-landscape
 
 神经网络的损失函数地图（loss landscape）（下图所示）是网络参数值的函数，当在特定数据集上执行推断（预测）时量化与使用特定参数配置相关的「误差」。这个损失地图可能对于很相似的网络架构也看起来很不同。下图来自论文《Visualizing the Loss Landscape of Neural Nets》，其中展示了残差连接可产生更平滑的拓扑结构。
@@ -190,7 +190,7 @@ numpy库官网的介绍，这里的-1被理解为unspecified value，意思是�
 ![](../img/img_9.png)
  ，此处的n代表了数据量，d代表了特征数。  
 来自Journal of Nonparametric Statistics的  
-paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](paper/Multiple predicting K-fold cross-validation for model selection.pdf)  
+paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](../paper/Multiple predicting K-fold cross-validation for model selection.pdf)  
 详细讲解：https://zhuanlan.zhihu.com/p/31924220
 # 方差、协方差、标准差、均方差、均方根值、均方误差、均方根误差对比分析
 详细讲解：https://blog.csdn.net/cqfdcw/article/details/78173839
@@ -210,7 +210,7 @@ paper:[Multiple predicting K-fold cross-validation for model selection. Journal 
 # 混合精度训练
 详细讲解: https://blog.csdn.net/u011808673/article/details/82112115  
 paper:
-[MIXED PRECISION TRAINING](paper/MIXED PRECISION TRAINING.pdf)
+[MIXED PRECISION TRAINING](../paper/MIXED PRECISION TRAINING.pdf)
 
 # 正则表达式中的“^“这个符号的一些思考
 只要是"^“这个字符是在中括号”[]“中被使用的话就是表示字符类的否定，如果不是的话就是表示限定开头。我这里说的是直接在”[]“中使用，不包括嵌套使用。
@@ -220,5 +220,5 @@ paper:
 # *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好
 fastai里面如果不用learn.fit来实现周期性的余弦退火
 下面是论文原地址和keras实现，后期我也会自己写一个  
-paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](paper/DECOUPLED WEIGHT DECAY REGULARIZATION.pdf)  
+paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DECOUPLED WEIGHT DECAY REGULARIZATION.pdf)  
 详细讲解：https://blog.csdn.net/qq_38290475/article/details/103548680

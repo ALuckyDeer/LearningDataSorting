@@ -37,7 +37,7 @@ ps我找到了中文：  https://blog.csdn.net/weixin_42137700/article/details/8
 -------------------更新-------------------  
 fast.ai 不再推荐余弦退火，因为它不再是最高性能的通用学习率调度器。现在，这个荣誉属于单周期学习率调度器。
 单周期学习速率调度器在2017年的论文 《Super-Convergence: Very Fast Training of Neural Networks Using Large Learning Rates》 中被引入。  
-paper:[Super-Convergence: Very Fast Training of Neural Networks Using Large Learning Rates](paper/SCVFTONNULLR.pdf)  
+paper:[Super-Convergence: Very Fast Training of Neural Networks Using Large Learning Rates](../paper/SCVFTONNULLR.pdf)  
 解释链接：https://bbs.cvmart.net/articles/4647/vote_count
 
 # ImageDataLoaders.from_df
