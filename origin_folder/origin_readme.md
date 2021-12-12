@@ -196,32 +196,29 @@ paper:[Multiple predicting K-fold cross-validation for model selection. Journal 
 详细讲解：https://blog.csdn.net/cqfdcw/article/details/78173839
 
 # kaggle提供的tesla V100支持to_fp16
-在kaggle的petfinder的竞赛中，提供的tesla V100支持native FP16 math
-
-利用fp16 代替 fp32
+在kaggle的petfinder的竞赛中，提供的tesla V100支持native FP16 math  
+利用fp16 代替 fp32可以加快训练速度
 
 优点：
-
 1）TensorRT的FP16与FP32相比能有接近一倍的速度提升168，前提是GPU支持FP16（如最新的2070,2080,2080ti等）
-
-2）减少显存。
+2）减少显存。  
 缺点：
 1） 会造成溢出
 
 在日常使用过程中，常使用双混合精度训练
 
 # 混合精度训练
-解释: https://blog.csdn.net/u011808673/article/details/82112115  
+详细讲解: https://blog.csdn.net/u011808673/article/details/82112115  
 paper:
 [MIXED PRECISION TRAINING](paper/MIXED PRECISION TRAINING.pdf)
 
 # 正则表达式中的“^“这个符号的一些思考
 只要是"^“这个字符是在中括号”[]“中被使用的话就是表示字符类的否定，如果不是的话就是表示限定开头。我这里说的是直接在”[]“中使用，不包括嵌套使用。
-其实也就是说”[]“代表的是一个字符集，”^"只有在字符集中才是反向字符集的意思。
+其实也就是说”[]“代表的是一个字符集，”^"只有在字符集中才是反向字符集的意思。  
 详细讲解：https://blog.csdn.net/sufubo/article/details/50990684
 
 # *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好
 fastai里面如果不用learn.fit来实现周期性的余弦退火
 下面是论文原地址和keras实现，后期我也会自己写一个  
 paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](paper/DECOUPLED WEIGHT DECAY REGULARIZATION.pdf)  
-详细讲解讲解：https://blog.csdn.net/qq_38290475/article/details/103548680
+详细讲解：https://blog.csdn.net/qq_38290475/article/details/103548680
