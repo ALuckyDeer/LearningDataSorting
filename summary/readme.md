@@ -21,6 +21,7 @@
 - [ 混合精度训练](#head21)
 - [ 正则表达式中的“^“这个符号的一些思考](#head22)
 - [ *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好](#head23)
+- [tts (Test-Time Augmentation) ](#head24)
 # <span id="head1"> 机器学习经验整理</span>
 (拒绝拖延!!!)
 
@@ -245,3 +246,7 @@ fastai里面如果不用learn.fit来实现周期性的余弦退火
 下面是论文原地址和keras实现，后期我也会自己写一个  
 paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DWDR.pdf)  
 详细讲解：https://blog.csdn.net/qq_38290475/article/details/103548680
+
+# <span id="head24">tts (Test-Time Augmentation) </span>
+测试数据增强，是在测试阶段时，将输入的测试数据进行，翻转、旋转操作等数据增强，并最后对同一样本的不同数据增强的结果根据任务需求进行例如平均，求和等数据处理
+再fastai中有learn.tta详解可以看[fastai_summary.md](../summary/fastai_summary.md)

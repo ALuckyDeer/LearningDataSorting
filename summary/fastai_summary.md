@@ -2,6 +2,8 @@
 - [ Learn.fit_one_cycle(n_epoch)](#head2)
 - [Learn.fit_one_cycle() 的重启的余弦退火-超参数调教明细表](#head3)
 - [ ImageDataLoaders.from_df](#head4)
+- [ learn.lr_find()学习率的选取怎样最好](#head5)
+- [ learn.tta](#head6)
 # <span id="head1"> install</span>
 pip install fastai -i https://pypi.douban.com/simple
 
@@ -49,3 +51,32 @@ paper:[Super-Convergence: Very Fast Training of Neural Networks Using Large Lear
 参考开发文档：https://docs.fast.ai/vision.data.html#ImageDataLoaders.from_df  
 使用filename column和label column从df创建
 如果标签列每一行包含多个标签，可以使用label_delim警告库您有一个多标签问题
+
+# <span id="head5"> learn.lr_find()学习率的选取怎样最好</span>
+在StackOverflow上找到了答案  
+Anything between 0.5e-2 and 3e-2 has roughly the same slope and would be a reasonable choice
+paper:[A disciplined approach to neural network hyper-parameters: Part 1 -- learning rate, batch size, momentum, and weight decay](paper/ADATNNHP.pdf)    
+讲解链接：https://stackoverflow.com/questions/61172627/choosing-the-learning-rate-using-fastais-learn-lr-find  
+
+
+# <span id="head6"> learn.tta</span>
+Learner.tta(ds_idx=1, dl=None, n=4, item_tfms=None, batch_tfms=None, beta=0.25, use_max=False)
+ds_idx=10 就是 dataloder[10]，它是个索引
+dl是dataloder数据加载器
+n是几次预测，经过n次预测，结果再平均
+use_max如果是true就会获得所有预测的最大值
+将beta设置为None以获得预测和tta结果的元组。
+最终的预测是(1-beta)*average+ beta乘以通过数据集的转换获得的预测。
+![](../img/img_10.png)
+原式参数  
+torch,lerp(input,end,weight，out=None)   
+对两个张量以start, end做线性插值，将结果返回到输出张量  
+out = start + weight*(end - start)  
+
+torch.lerp(aug_preds, preds, beta)  
+
+Return predictions on the ds_idx dataset or dl using Test Time Augmentation
+
+In practice, we get the predictions n times with the transforms of the training set and average those. The final predictions are (1-beta) multiplied by this average + beta multiplied by the predictions obtained with the transforms of the dataset. Set beta to None to get a tuple of the predictions and tta results. You can also use the maximum of all predictions instead of an average by setting use_max=True.
+
+If you want to use new transforms, you can pass them with item_tfms and batch_tfms.

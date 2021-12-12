@@ -222,3 +222,7 @@ fastai里面如果不用learn.fit来实现周期性的余弦退火
 下面是论文原地址和keras实现，后期我也会自己写一个  
 paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DWDR.pdf)  
 详细讲解：https://blog.csdn.net/qq_38290475/article/details/103548680
+
+# tts (Test-Time Augmentation) 
+测试数据增强，是在测试阶段时，将输入的测试数据进行，翻转、旋转操作等数据增强，并最后对同一样本的不同数据增强的结果根据任务需求进行例如平均，求和等数据处理
+再fastai中有learn.tta详解可以看[fastai_summary.md](../summary/fastai_summary.md)
