@@ -79,3 +79,8 @@ If you want to use new transforms, you can pass them with item_tfms and batch_tf
 OldRandomCrop(size, pad_mode='zeros', enc=None, dec=None, split_idx=None, order=None) :: CropPad
 
 随机裁剪并且填充0，相当于恢复
+
+# argmax(a)
+取出a中元素最大值所对应的索引
+
+
