@@ -230,3 +230,9 @@ paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DWDR.pdf)
 # 深度学习为什么要裁剪
 随机裁剪相当于建立每个因子特征与相应类别的权重关系，减弱背景(或噪音)因子的权重，且使模型面对缺失值不敏感，也就可以产生更好的学习效果，增加模型稳定性。  
 详细讲解:https://blog.csdn.net/u010165147/article/details/78633858fa  
+
+# 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？
+中科院自动化所提出不规则卷积神经网络可动态提升内核效率
+卷积核应该跟输入特征模式一样，也拥有不规则的形状，这样模型才能更好地提取最有价值的信息。而传统卷积神经网络的内核形状通常是固定的，不能通过训练来直接学习得到。
+中科院： https://www.cas.cn/syky/201707/t20170712_4608245.shtml  
+解答： https://stats.stackexchange.com/questions/351115/convolution-with-a-non-square-kernel  

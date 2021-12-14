@@ -22,6 +22,8 @@
 - [ 正则表达式中的“^“这个符号的一些思考](#head22)
 - [ *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好](#head23)
 - [tts (Test-Time Augmentation) ](#head24)
+- [ 深度学习为什么要裁剪](#head25)
+- [ 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？](#head26)
 # <span id="head1"> 机器学习经验整理</span>
 (拒绝拖延!!!)
 
@@ -250,3 +252,13 @@ paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DWDR.pdf)
 # <span id="head24">tts (Test-Time Augmentation) </span>
 测试数据增强，是在测试阶段时，将输入的测试数据进行，翻转、旋转操作等数据增强，并最后对同一样本的不同数据增强的结果根据任务需求进行例如平均，求和等数据处理
 再fastai中有learn.tta详解可以看[fastai_summary.md](../summary/fastai_summary.md)
+
+# <span id="head25"> 深度学习为什么要裁剪</span>
+随机裁剪相当于建立每个因子特征与相应类别的权重关系，减弱背景(或噪音)因子的权重，且使模型面对缺失值不敏感，也就可以产生更好的学习效果，增加模型稳定性。  
+详细讲解:https://blog.csdn.net/u010165147/article/details/78633858fa  
+
+# <span id="head26"> 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？</span>
+中科院自动化所提出不规则卷积神经网络可动态提升内核效率
+卷积核应该跟输入特征模式一样，也拥有不规则的形状，这样模型才能更好地提取最有价值的信息。而传统卷积神经网络的内核形状通常是固定的，不能通过训练来直接学习得到。
+中科院： https://www.cas.cn/syky/201707/t20170712_4608245.shtml  
+解答： https://stats.stackexchange.com/questions/351115/convolution-with-a-non-square-kernel  

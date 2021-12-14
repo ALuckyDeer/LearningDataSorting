@@ -6,7 +6,8 @@ import math
 import torch
 from PIL import Image
 import matplotlib.pyplot as plt
-
+import torch.nn as nn
+nn.Conv2d
 #ImageDataLoaders()
 
 if __name__ == '__main__':
