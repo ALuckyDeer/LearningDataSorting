@@ -226,3 +226,7 @@ paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DWDR.pdf)
 # tts (Test-Time Augmentation) 
 测试数据增强，是在测试阶段时，将输入的测试数据进行，翻转、旋转操作等数据增强，并最后对同一样本的不同数据增强的结果根据任务需求进行例如平均，求和等数据处理
 再fastai中有learn.tta详解可以看[fastai_summary.md](../summary/fastai_summary.md)
+
+# 深度学习为什么要裁剪
+随机裁剪相当于建立每个因子特征与相应类别的权重关系，减弱背景(或噪音)因子的权重，且使模型面对缺失值不敏感，也就可以产生更好的学习效果，增加模型稳定性。  
+详细讲解:https://blog.csdn.net/u010165147/article/details/78633858fa  

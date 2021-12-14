@@ -74,3 +74,8 @@ Return predictions on the ds_idx dataset or dl using Test Time Augmentation
 In practice, we get the predictions n times with the transforms of the training set and average those. The final predictions are (1-beta) multiplied by this average + beta multiplied by the predictions obtained with the transforms of the dataset. Set beta to None to get a tuple of the predictions and tta results. You can also use the maximum of all predictions instead of an average by setting use_max=True.
 
 If you want to use new transforms, you can pass them with item_tfms and batch_tfms.
+
+# OldRandomCrop
+OldRandomCrop(size, pad_mode='zeros', enc=None, dec=None, split_idx=None, order=None) :: CropPad
+
+随机裁剪并且填充0，相当于恢复

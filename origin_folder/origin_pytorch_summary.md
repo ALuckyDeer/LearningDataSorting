@@ -83,3 +83,9 @@ function(a=1, b=2, c=3)
 
 # 公式推导未学明白，数学基础需要补习，呜呜呜
 [vector-雅可比矩阵](https://github.com/zergtant/pytorch-handbook/blob/master/chapter1/2_autograd_tutorial.ipynb)
+
+#nn.Linear
+torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)  
+Applies a linear transformation to the incoming data:  
+y = xA^T + b  
+in_features – size of each input sample  
