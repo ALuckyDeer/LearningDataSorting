@@ -24,6 +24,9 @@
 - [tts (Test-Time Augmentation) ](#head24)
 - [ 深度学习为什么要裁剪](#head25)
 - [ 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？](#head26)
+- [黑话 oof、cv、lb、corr、r、r2](#head27)
+- [ 黑话](#head28)
+- [ 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的](#head29)
 # <span id="head1"> 机器学习经验整理</span>
 (拒绝拖延!!!)
 
@@ -234,7 +237,9 @@ paper:[Multiple predicting K-fold cross-validation for model selection. Journal 
 在日常使用过程中，常使用双混合精度训练
 
 # <span id="head21"> 混合精度训练</span>
-详细讲解: https://blog.csdn.net/u011808673/article/details/82112115  
+详细讲解: https://zhuanlan.zhihu.com/p/103685761  
+混合精度训练是在尽可能减少精度损失的情况下利用半精度浮点数加速训练。它使用FP16即半精度浮点数存储权重和梯度。在减少占用内存的同时起到了加速训练的效果。  
+
 paper:
 [MIXED PRECISION TRAINING](../paper/MPT.pdf)
 
@@ -262,3 +267,26 @@ paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DWDR.pdf)
 卷积核应该跟输入特征模式一样，也拥有不规则的形状，这样模型才能更好地提取最有价值的信息。而传统卷积神经网络的内核形状通常是固定的，不能通过训练来直接学习得到。
 中科院： https://www.cas.cn/syky/201707/t20170712_4608245.shtml  
 解答： https://stats.stackexchange.com/questions/351115/convolution-with-a-non-square-kernel  
+
+# <span id="head27">黑话 oof、cv、lb、corr、r、r2</span>
+oof=out of fold (prediction)
+在 K-fold 交叉验证中，预测是对测试数据进行的，这不包括训练数据，这种预测称为 Out of fold predictions 。  
+所以基本上是在 K 折交叉验证期间对保留示例的预测。  
+kaggle讲解：https://www.kaggle.com/getting-started/177975  
+
+cross validation 相信自己的cv!!!  
+
+lb leaderboard  
+
+corr correlation  
+
+R:模型做出的响应变量的观测值与响应变量的预测值之间的相关性。  
+
+R2:回归模型中可以被预测变量解释的方差在响应变量中的比例
+
+# <span id="head28"> 黑话</span>
+# <span id="head29"> 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的</span>
+假如得到5fold个结果，ABCDE，他们的均方差求平均是根号（平均值（A**2,B**2,C**2,D**2,E**2））
+与每个数据的loss都保存下载，最后对所有的loss一起求均方根误差  
+是有区别的，这算是一个提高LB与CV的方法  
+kaggle讲解：https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/293378  

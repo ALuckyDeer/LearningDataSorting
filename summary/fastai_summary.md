@@ -4,6 +4,8 @@
 - [ ImageDataLoaders.from_df](#head4)
 - [ learn.lr_find()学习率的选取怎样最好](#head5)
 - [ learn.tta](#head6)
+- [ OldRandomCrop](#head7)
+- [ argmax(a)](#head8)
 # <span id="head1"> install</span>
 pip install fastai -i https://pypi.douban.com/simple
 
@@ -80,3 +82,13 @@ Return predictions on the ds_idx dataset or dl using Test Time Augmentation
 In practice, we get the predictions n times with the transforms of the training set and average those. The final predictions are (1-beta) multiplied by this average + beta multiplied by the predictions obtained with the transforms of the dataset. Set beta to None to get a tuple of the predictions and tta results. You can also use the maximum of all predictions instead of an average by setting use_max=True.
 
 If you want to use new transforms, you can pass them with item_tfms and batch_tfms.
+
+# <span id="head7"> OldRandomCrop</span>
+OldRandomCrop(size, pad_mode='zeros', enc=None, dec=None, split_idx=None, order=None) :: CropPad
+
+随机裁剪并且填充0，相当于恢复
+
+# <span id="head8"> argmax(a)</span>
+取出a中元素最大值所对应的索引
+
+
