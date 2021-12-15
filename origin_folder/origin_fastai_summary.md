@@ -84,3 +84,5 @@ OldRandomCrop(size, pad_mode='zeros', enc=None, dec=None, split_idx=None, order=
 取出a中元素最大值所对应的索引
 
 
+
+

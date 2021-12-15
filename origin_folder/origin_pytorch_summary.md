@@ -89,3 +89,16 @@ torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
 Applies a linear transformation to the incoming data:  
 y = xA^T + b  
 in_features – size of each input sample  
+
+
+# max_pool2d(input,B)的B如果是方形的可以只写一个数字，如果不是就写3*2这种类型的
+
+# x = x.view(-1, self.num_flat_features(x))
+拉平后的特征空间大小  
+pytorch官方论坛考古：https://discuss.pytorch.org/t/understand-nn-module/8416  
+
+# forward
+在模型中必须要定义 forward 函数，backward 函数（用来计算梯度）会被autograd自动创建。 可以在 forward 函数中使用任何针对 Tensor 的操作。  
+
+# ``nn.Conv2d`` 接受一个4维的张量，
+``每一维分别是sSamples * nChannels * Height * Width（样本数*通道数*高*宽）``
