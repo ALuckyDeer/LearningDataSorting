@@ -102,3 +102,5 @@ pytorch官方论坛考古：https://discuss.pytorch.org/t/understand-nn-module/8
 
 # ``nn.Conv2d`` 接受一个4维的张量，
 ``每一维分别是sSamples * nChannels * Height * Width（样本数*通道数*高*宽）``
+
+# 
