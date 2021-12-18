@@ -118,3 +118,18 @@ Learner(dls, nn.Linear(3,4), loss_func=CrossEntropyLossFlat(), cbs=mixup) as lea
 Implementation of https://arxiv.org/abs/1710.09412  
 开发文档：https://docs.fast.ai/callback.mixup.html#MixUp  
 详细讲解:https://blog.csdn.net/ouyangfushu/article/details/87866579  
+
+# learn.save和learn.export区别
+Learner.save  
+Save model and optimizer state (if with_opt) to self.path/self.model_dir/file  
+用Learner.load读取
+
+Learner.export  
+Export the content of self without the items and the optimizer state for inference
+The Learner is saved in self.path/fname, using pickle_protocol. Note that serialization in Python saves the names of functions, not the code itself. Therefore, any custom code you have for models, data transformation, loss function etc... should be put in a module that you will import in your training environment before exporting, and in your deployment environment before loading it.  
+用load_learner读取
+
+个人理解：  
+前者可以保存参数，以便在别的程序中直接使用预测，  
+后者没有保存参数，在加载这个模型之前要重新加载好模型、损失函数、数据变换等，用来进行迁移学习可以用这个  
+
