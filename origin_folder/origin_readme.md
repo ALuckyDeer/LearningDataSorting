@@ -261,3 +261,31 @@ R2:回归模型中可以被预测变量解释的方差在响应变量中的比�
 与每个数据的loss都保存下载，最后对所有的loss一起求均方根误差  
 是有区别的，这算是一个提高LB与CV的方法  
 kaggle讲解：https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/293378  
+
+# kaggle gpu连续使用会增加时常
+每个星期都用完了，结果这个星期给了41个小时的gpu
+![](../img/img_11.png)
+
+# unsupported operand type(s) for *: 'AccumMetric' and 'int'
+创建一个实例就可以解决  
+详细讲解：https://forums.fast.ai/t/problem-with-f1scoremulti-metric/63721  
+
+# AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤
+```angular2html
+AccumMetric(func, dim_argmax=None, activation='no', thresh=None, to_np=False, invert_arg=False, flatten=True, **kwargs) :: Metric
+```
+Stores predictions and targets on CPU in accumulate to perform final calculations with func.  
+假如有5个折，每一折有10个epoch，那么在每一折中，计算损失是使用一个epoch的预测和目标来进行计算的，
+在每次运行输出的时候，显示的是批分数，但是在最终训练好的时候，要的是rsme分数，这就会产生误差
+真正的均方根误差，就应该是把所有的折的预测和误差最后一起进行计算，而不是每个折进行计算完单个折的均方根误差，然后在相加求均值  
+```由于每个折叠都是 RMSE（均方根误差），您不能平均平方根并获得平方根。```  
+使用这个函数可以将结果保存在cpu中，然后用func来进行计算，或者自己手动保存，最后进行计算。
+将预测和目标存储在CPU中，以使用func执行最终计算。
+kaggle大神讲解：https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/293378#1607804  
+
+# mixup
+fastai的mixup真的好用，在fastai中，默认的随机比例是0.4，混合其实就相当于图像叠加在一起看起来  
+fastai开发文档:https://docs.fast.ai/callback.mixup.html#MixUp  
+从数据层面解决过拟合的问题，属于数据增强方法
+从训练样本中随机抽取两个样本进行随机加权求和，标签样本也同样，然后预测结果与加权求和之后的标签求损失，最后反向更新  
+Implementation of https://arxiv.org/abs/1710.09412
