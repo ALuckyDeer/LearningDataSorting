@@ -116,4 +116,5 @@ MixUp(alpha=0.4) :: MixHandler
 Learner(dls, nn.Linear(3,4), loss_func=CrossEntropyLossFlat(), cbs=mixup) as learn
 ```
 Implementation of https://arxiv.org/abs/1710.09412  
-开发文档：https://docs.fast.ai/callback.mixup.html#MixUp
+开发文档：https://docs.fast.ai/callback.mixup.html#MixUp  
+详细讲解:https://blog.csdn.net/ouyangfushu/article/details/87866579  
