@@ -132,18 +132,43 @@ random_state：默认为None，表示随机数的种子，只有当shuffle设置
 
 ## 经验补充
 这个stratifiedKFold有这样的好处，就是在分层好了之后，划分后的训练集和验证集中类别分布尽量和原数据集一样  
-这样在训练的时候，可以在每一个fold训练的时候，保存它`验证集`的预测结果  
+下面这段话写的不对！！  
+~~这样在训练的时候，可以在每一个fold训练的时候，保存它`验证集`的预测结果  
 例如在kaggle的petfind比赛中，可以在fold按照顺序的保存
 `验证集`预测的结果，这样可以在每一折中将结果添加到一个全局数组中，方便在所有折计算完成之后，进行本地cv的计算
-与submission的LB结果最终有个对比，这就是分层抽样的好处
-注意：假如数据样本是回归任务的数据，不是分类的，就不能用StratifiedKFold了,只能用KFold
-## 交叉验证的每个fold是一个不同的模型
-交叉验证的每个fold是一个不同的模型。选定最优参数后，再用所有的数据训练一个新的模型，测试用。你看到的交叉验证有时似乎并不是对每个fold重新训练模型，是因为有的模型支持增量式地增加或减少训练数据。不同fold的训练数据之间往往重叠很大，在一个fold的模型的基础上增减训练数据可以快速地得到下一个fold的模型。
+与submission的LB结果最终有个对比，这就是分层抽样的好处~~  
 
-作者：王赟 Maigo
-链接：https://www.zhihu.com/question/29350545/answer/44043075
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+注意：假如数据样本是回归任务的数据，不是分类的，就不能用StratifiedKFold了,只能用KFold  
+StratifiedKFlod：分层采样，训练集与验证集中各类别样本的比列与原始数据中相同；（分类问题）  
+KFlod：将数据分成训练集和验证集，不考虑训练集与测试集中各类别数据是否相同；（回归问题）   
+![](../img/img_12.png)  
+例如：比如说100个samples,里面有90个A类，10个B类，假设使用KFold这个莽类，n_splits=10,由于KFold太莽，我分成10段，可能前9段就都是同一个类
+## stackoverflow的KFlod和stratifiedKFold注解
+If you sample on continuous data, use KFold. If your target is categorical you may use both KFold and StratifiedKFold whichever suits your needs.  
+连续数据用kfold,分类用stratifiedKFold
+stackoverflow上的note: https://stackoverflow.com/questions/54945196/sklearn-stratified-k-fold-cv-with-linear-model-like-elasticnetcv
+## 交叉验证的每个fold是一个不同的模型
+这K次的模型测试结果，我们拿过来均值来看看是否满足我们的心理预期。  
+
+**其实准确来说不是每个模型求和计算均值，应该是k次所有的数据帧
+来计算损失，看看精度是否满足预期。**
+
+# 这个讲解最为详细：精品中的精品！！!⭐⭐⭐⭐⭐
+明确理解交叉验证，我们可以分为3个维度去阐述这个问题：
+
+（1）训练集、验证集以及测试集的区分
+
+（2）交叉验证：直接用于模型评估
+
+（3）交叉验证：用于超参数选择  
+
+大神详细讲解：https://www.zhihu.com/question/29350545/answer/2024478600 
+
+以下这段话来自知乎：  https://www.zhihu.com/question/29350545  
+交叉验证的每个fold是一个不同的模型。选定最优参数后，再用所有的数据训练一个新的模型，测试用。  
+你看到的交叉验证有时似乎并不是对每个fold重新训练模型，是因为有的模型支持增量式地增加或减少训练数据。
+不同fold的训练数据之间往往重叠很大，在一个fold的模型的基础上增减训练数据可以快速地得到下一个fold的模型。
+
 
 # 斯透奇斯规则(Sturges'rule)
 组距分组时,根据数据个数n确定组数m的经验公式,直方图分组用这个比较河里，这很河里
@@ -285,11 +310,13 @@ kaggle讲解：https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/2
 创建一个实例就可以解决  
 详细讲解：https://forums.fast.ai/t/problem-with-f1scoremulti-metric/63721  
 
-# AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤
+# AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤(用作cv和LB的相关性分析)
 ```angular2html
 AccumMetric(func, dim_argmax=None, activation='no', thresh=None, to_np=False, invert_arg=False, flatten=True, **kwargs) :: Metric
 ```
 Stores predictions and targets on CPU in accumulate to perform final calculations with func.  
+（这是用在cv和LB相关性分析上的，根据cv至少对自己的lb有个大概的认知）  
+![](../img/img_13.png)  
 假如有5个折，每一折有10个epoch，那么在每一折中，计算损失是使用一个epoch的预测和目标来进行计算的，
 在每次运行输出的时候，显示的是批分数，但是在最终训练好的时候，要的是rsme分数，这就会产生误差
 真正的均方根误差，就应该是把所有的折的预测和误差最后一起进行计算，而不是每个折进行计算完单个折的均方根误差，然后在相加求均值  

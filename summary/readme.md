@@ -12,26 +12,28 @@
 - [残差的loss平滑的直观感受-论文《Visualizing the Loss Landscape of Neural Nets》](#head12)
 - [ KFold与StratifiedKFold](#head13)
 	- [ 经验补充](#head14)
-	- [ 交叉验证的每个fold是一个不同的模型](#head15)
-- [ 斯透奇斯规则(Sturges'rule)](#head16)
-- [ 数据分箱之pd.cut()](#head17)
-- [ reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。](#head18)
-- [ 交叉验证详解](#head19)
-- [ 交叉验证如何取K值？](#head20)
-- [ 方差、协方差、标准差、均方差、均方根值、均方误差、均方根误差对比分析](#head21)
-- [kaggle提供的tesla V100支持to_fp16](#head22)
-- [ 混合精度训练](#head23)
-- [ 正则表达式中的“^“这个符号的一些思考](#head24)
-- [ *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好](#head25)
-- [tts (Test-Time Augmentation) ](#head26)
-- [ 深度学习为什么要裁剪](#head27)
-- [ 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？](#head28)
-- [黑话 oof、cv、lb、corr、r、r2](#head29)
-- [ 黑话](#head30)
-- [ 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的](#head31)
-- [kaggle gpu连续使用会增加时常](#head32)
-- [unsupported operand type(s) for *: 'AccumMetric' and 'int'](#head33)
-- [ AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤](#head34)
+	- [ stackoverflow的KFlod和stratifiedKFold注解](#head15)
+	- [ 交叉验证的每个fold是一个不同的模型](#head16)
+- [ 这个讲解最为详细：精品中的精品！！!⭐⭐⭐⭐⭐](#head17)
+- [ 斯透奇斯规则(Sturges'rule)](#head18)
+- [ 数据分箱之pd.cut()](#head19)
+- [ reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。](#head20)
+- [ 交叉验证详解](#head21)
+- [ 交叉验证如何取K值？](#head22)
+- [ 方差、协方差、标准差、均方差、均方根值、均方误差、均方根误差对比分析](#head23)
+- [kaggle提供的tesla V100支持to_fp16](#head24)
+- [ 混合精度训练](#head25)
+- [ 正则表达式中的“^“这个符号的一些思考](#head26)
+- [ *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好](#head27)
+- [tts (Test-Time Augmentation) ](#head28)
+- [ 深度学习为什么要裁剪](#head29)
+- [ 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？](#head30)
+- [黑话 oof、cv、lb、corr、r、r2](#head31)
+- [ 黑话](#head32)
+- [ 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的](#head33)
+- [kaggle gpu连续使用会增加时常](#head34)
+- [unsupported operand type(s) for *: 'AccumMetric' and 'int'](#head35)
+- [ AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤(用作cv和LB的相关性分析)](#head36)
 # <span id="head1"> 机器学习经验整理</span>
 (拒绝拖延!!!)
 
@@ -166,27 +168,52 @@ random_state：默认为None，表示随机数的种子，只有当shuffle设置
 
 ## <span id="head14"> 经验补充</span>
 这个stratifiedKFold有这样的好处，就是在分层好了之后，划分后的训练集和验证集中类别分布尽量和原数据集一样  
-这样在训练的时候，可以在每一个fold训练的时候，保存它`验证集`的预测结果  
+下面这段话写的不对！！  
+~~这样在训练的时候，可以在每一个fold训练的时候，保存它`验证集`的预测结果  
 例如在kaggle的petfind比赛中，可以在fold按照顺序的保存
 `验证集`预测的结果，这样可以在每一折中将结果添加到一个全局数组中，方便在所有折计算完成之后，进行本地cv的计算
-与submission的LB结果最终有个对比，这就是分层抽样的好处
-注意：假如数据样本是回归任务的数据，不是分类的，就不能用StratifiedKFold了,只能用KFold
-## <span id="head15"> 交叉验证的每个fold是一个不同的模型</span>
-交叉验证的每个fold是一个不同的模型。选定最优参数后，再用所有的数据训练一个新的模型，测试用。你看到的交叉验证有时似乎并不是对每个fold重新训练模型，是因为有的模型支持增量式地增加或减少训练数据。不同fold的训练数据之间往往重叠很大，在一个fold的模型的基础上增减训练数据可以快速地得到下一个fold的模型。
+与submission的LB结果最终有个对比，这就是分层抽样的好处~~  
 
-作者：王赟 Maigo
-链接：https://www.zhihu.com/question/29350545/answer/44043075
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+注意：假如数据样本是回归任务的数据，不是分类的，就不能用StratifiedKFold了,只能用KFold  
+StratifiedKFlod：分层采样，训练集与验证集中各类别样本的比列与原始数据中相同；（分类问题）  
+KFlod：将数据分成训练集和验证集，不考虑训练集与测试集中各类别数据是否相同；（回归问题）   
+![](../img/img_12.png)  
+例如：比如说100个samples,里面有90个A类，10个B类，假设使用KFold这个莽类，n_splits=10,由于KFold太莽，我分成10段，可能前9段就都是同一个类
+## <span id="head15"> stackoverflow的KFlod和stratifiedKFold注解</span>
+If you sample on continuous data, use KFold. If your target is categorical you may use both KFold and StratifiedKFold whichever suits your needs.  
+连续数据用kfold,分类用stratifiedKFold
+stackoverflow上的note: https://stackoverflow.com/questions/54945196/sklearn-stratified-k-fold-cv-with-linear-model-like-elasticnetcv
+## <span id="head16"> 交叉验证的每个fold是一个不同的模型</span>
+这K次的模型测试结果，我们拿过来均值来看看是否满足我们的心理预期。  
 
-# <span id="head16"> 斯透奇斯规则(Sturges'rule)</span>
+**其实准确来说不是每个模型求和计算均值，应该是k次所有的数据帧
+来计算损失，看看精度是否满足预期。**
+
+# <span id="head17"> 这个讲解最为详细：精品中的精品！！!⭐⭐⭐⭐⭐</span>
+明确理解交叉验证，我们可以分为3个维度去阐述这个问题：
+
+（1）训练集、验证集以及测试集的区分
+
+（2）交叉验证：直接用于模型评估
+
+（3）交叉验证：用于超参数选择  
+
+大神详细讲解：https://www.zhihu.com/question/29350545/answer/2024478600 
+
+以下这段话来自知乎：  https://www.zhihu.com/question/29350545  
+交叉验证的每个fold是一个不同的模型。选定最优参数后，再用所有的数据训练一个新的模型，测试用。  
+你看到的交叉验证有时似乎并不是对每个fold重新训练模型，是因为有的模型支持增量式地增加或减少训练数据。
+不同fold的训练数据之间往往重叠很大，在一个fold的模型的基础上增减训练数据可以快速地得到下一个fold的模型。
+
+
+# <span id="head18"> 斯透奇斯规则(Sturges'rule)</span>
 组距分组时,根据数据个数n确定组数m的经验公式,直方图分组用这个比较河里，这很河里
 统计学书中提到了一个帮助确定组数的经验公式：    
 斯透奇斯规则(Sturges'rule),m=1+3.322lgN,(N为总次数)    
 ![](../img/img_5.png)
 ![](../img/img_6.png)
 
-# <span id="head17"> 数据分箱之pd.cut()</span>
+# <span id="head19"> 数据分箱之pd.cut()</span>
 pd.cut( x, bins, right=True, labels=None, retbins=False, precision=3, include_lowest=False, duplicates='raise', )
 
 * x ： 一维数组（对应前边例子中提到的销售业绩）
@@ -212,7 +239,7 @@ pd.cut( x, bins, right=True, labels=None, retbins=False, precision=3, include_lo
 * include_lowest：布尔值，表示区间的左边是开还是闭，默认为false，也就是不包含区间左边。
 
 * duplicates：如果分箱临界值不唯一，则引发ValueError或丢弃非唯一
-# <span id="head18"> reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。</span>
+# <span id="head20"> reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。</span>
 ![](../img/img_3.png)
 
 numpy库官网的介绍，这里的-1被理解为unspecified value，意思是未指定为给定的。如果需要特定的行数，列数多少无所谓，只需要指定行数，那么列数直接用-1代替就行。
@@ -220,7 +247,7 @@ numpy库官网的介绍，这里的-1被理解为unspecified value，意思是�
 所以-1在这里应该可以理解为一个正整数通配符，它代替任何整数。
 ![](../img/img_4.png)
 
-# <span id="head19"> 交叉验证详解</span>
+# <span id="head21"> 交叉验证详解</span>
 >重点：
 >* N折交叉验证有两个用途：模型评估、模型选择。
 >* N折交叉只是一种划分数据集的策略。想知道它的优势，可以拿它和传统划分数据集的方式进行比较。它可以避免固定划分数据集的局限性、特殊性，这个优势在小规模数据集上更明显。
@@ -232,7 +259,7 @@ numpy库官网的介绍，这里的-1被理解为unspecified value，意思是�
 当用交叉验证进行模型评估时，交叉验证不能解决过拟合问题，只能用来评估模型的performance。  
 详细讲解：https://www.cnblogs.com/henuliulei/p/13686046.html
 
-# <span id="head20"> 交叉验证如何取K值？</span>
+# <span id="head22"> 交叉验证如何取K值？</span>
 2017年的一项研究给出了另一种经验式的选择方法，研究见下面的论文，作者建议 
 ![](../img/img_8.png)
 且保证 
@@ -241,10 +268,10 @@ numpy库官网的介绍，这里的-1被理解为unspecified value，意思是�
 来自Journal of Nonparametric Statistics的  
 paper:[Multiple predicting K-fold cross-validation for model selection. Journal of Nonparametric Statistics](../paper/MPKFCVFMS.pdf.pdf)  
 详细讲解：https://zhuanlan.zhihu.com/p/31924220
-# <span id="head21"> 方差、协方差、标准差、均方差、均方根值、均方误差、均方根误差对比分析</span>
+# <span id="head23"> 方差、协方差、标准差、均方差、均方根值、均方误差、均方根误差对比分析</span>
 详细讲解：https://blog.csdn.net/cqfdcw/article/details/78173839
 
-# <span id="head22">kaggle提供的tesla V100支持to_fp16</span>
+# <span id="head24">kaggle提供的tesla V100支持to_fp16</span>
 在kaggle的petfinder的竞赛中，提供的tesla V100支持native FP16 math  
 利用fp16 代替 fp32可以加快训练速度
 
@@ -256,39 +283,39 @@ paper:[Multiple predicting K-fold cross-validation for model selection. Journal 
 
 在日常使用过程中，常使用双混合精度训练
 
-# <span id="head23"> 混合精度训练</span>
+# <span id="head25"> 混合精度训练</span>
 详细讲解: https://zhuanlan.zhihu.com/p/103685761  
 混合精度训练是在尽可能减少精度损失的情况下利用半精度浮点数加速训练。它使用FP16即半精度浮点数存储权重和梯度。在减少占用内存的同时起到了加速训练的效果。  
 
 paper:
 [MIXED PRECISION TRAINING](../paper/MPT.pdf)
 
-# <span id="head24"> 正则表达式中的“^“这个符号的一些思考</span>
+# <span id="head26"> 正则表达式中的“^“这个符号的一些思考</span>
 只要是"^“这个字符是在中括号”[]“中被使用的话就是表示字符类的否定，如果不是的话就是表示限定开头。我这里说的是直接在”[]“中使用，不包括嵌套使用。
 其实也就是说”[]“代表的是一个字符集，”^"只有在字符集中才是反向字符集的意思。  
 详细讲解：https://blog.csdn.net/sufubo/article/details/50990684
 
-# <span id="head25"> *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好</span>
+# <span id="head27"> *重要学习率规划----周期性余弦退火的keras实现，fastai中使用良好</span>
 fastai里面如果不用learn.fit来实现周期性的余弦退火
 下面是论文原地址和keras实现，后期我也会自己写一个  
 paper: [DECOUPLED WEIGHT DECAY REGULARIZATION](../paper/DWDR.pdf)  
 详细讲解：https://blog.csdn.net/qq_38290475/article/details/103548680
 
-# <span id="head26">tts (Test-Time Augmentation) </span>
+# <span id="head28">tts (Test-Time Augmentation) </span>
 测试数据增强，是在测试阶段时，将输入的测试数据进行，翻转、旋转操作等数据增强，并最后对同一样本的不同数据增强的结果根据任务需求进行例如平均，求和等数据处理
 再fastai中有learn.tta详解可以看[fastai_summary.md](../summary/fastai_summary.md)
 
-# <span id="head27"> 深度学习为什么要裁剪</span>
+# <span id="head29"> 深度学习为什么要裁剪</span>
 随机裁剪相当于建立每个因子特征与相应类别的权重关系，减弱背景(或噪音)因子的权重，且使模型面对缺失值不敏感，也就可以产生更好的学习效果，增加模型稳定性。  
 详细讲解:https://blog.csdn.net/u010165147/article/details/78633858fa  
 
-# <span id="head28"> 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？</span>
+# <span id="head30"> 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？</span>
 中科院自动化所提出不规则卷积神经网络可动态提升内核效率
 卷积核应该跟输入特征模式一样，也拥有不规则的形状，这样模型才能更好地提取最有价值的信息。而传统卷积神经网络的内核形状通常是固定的，不能通过训练来直接学习得到。
 中科院： https://www.cas.cn/syky/201707/t20170712_4608245.shtml  
 解答： https://stats.stackexchange.com/questions/351115/convolution-with-a-non-square-kernel  
 
-# <span id="head29">黑话 oof、cv、lb、corr、r、r2</span>
+# <span id="head31">黑话 oof、cv、lb、corr、r、r2</span>
 oof=out of fold (prediction)
 在 K-fold 交叉验证中，预测是对测试数据进行的，这不包括训练数据，这种预测称为 Out of fold predictions 。  
 所以基本上是在 K 折交叉验证期间对保留示例的预测。  
@@ -304,26 +331,28 @@ R:模型做出的响应变量的观测值与响应变量的预测值之间的相
 
 R2:回归模型中可以被预测变量解释的方差在响应变量中的比例
 
-# <span id="head30"> 黑话</span>
-# <span id="head31"> 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的</span>
+# <span id="head32"> 黑话</span>
+# <span id="head33"> 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的</span>
 假如得到5fold个结果，ABCDE，他们的均方差求平均是根号（平均值（A**2,B**2,C**2,D**2,E**2））
 与每个数据的loss都保存下载，最后对所有的loss一起求均方根误差  
 是有区别的，这算是一个提高LB与CV的方法  
 kaggle讲解：https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/293378  
 
-# <span id="head32">kaggle gpu连续使用会增加时常</span>
+# <span id="head34">kaggle gpu连续使用会增加时常</span>
 每个星期都用完了，结果这个星期给了41个小时的gpu
 ![](../img/img_11.png)
 
-# <span id="head33">unsupported operand type(s) for *: 'AccumMetric' and 'int'</span>
+# <span id="head35">unsupported operand type(s) for *: 'AccumMetric' and 'int'</span>
 创建一个实例就可以解决  
 详细讲解：https://forums.fast.ai/t/problem-with-f1scoremulti-metric/63721  
 
-# <span id="head34"> AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤</span>
+# <span id="head36"> AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤(用作cv和LB的相关性分析)</span>
 ```angular2html
 AccumMetric(func, dim_argmax=None, activation='no', thresh=None, to_np=False, invert_arg=False, flatten=True, **kwargs) :: Metric
 ```
 Stores predictions and targets on CPU in accumulate to perform final calculations with func.  
+（这是用在cv和LB相关性分析上的，根据cv至少对自己的lb有个大概的认知）  
+![](../img/img_13.png)  
 假如有5个折，每一折有10个epoch，那么在每一折中，计算损失是使用一个epoch的预测和目标来进行计算的，
 在每次运行输出的时候，显示的是批分数，但是在最终训练好的时候，要的是rsme分数，这就会产生误差
 真正的均方根误差，就应该是把所有的折的预测和误差最后一起进行计算，而不是每个折进行计算完单个折的均方根误差，然后在相加求均值  
