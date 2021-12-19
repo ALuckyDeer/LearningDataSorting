@@ -24,7 +24,10 @@ def detectHeadLines(f):
 
     headline_counter = 0
     iscode = False
+
+    lines_num=0
     for line in f.readlines():
+        lines_num+=1
         if (line[:3] == '```'):
             iscode = not iscode
 
@@ -34,6 +37,7 @@ def detectHeadLines(f):
         ls = temp_line.split(' ')
         if len(ls) > 1 and ls[0] in headline_dic.keys() and not iscode:
             headline_counter += 1
+            print(headline_counter)
             c_status = headline_dic[ls[0]]
             # find first rank headline
             if last_status == -1 or c_status == 0 or suojin[c_status] == 0:
@@ -65,12 +69,20 @@ def detectHeadLines(f):
 
 if __name__ == '__main__':
 
+    #更新
+    #注意这个文件对```进行偶数判断然后判别iscode是true还是false
+    #最简单的办法是，出现引用代码块的时候，将```内容```写成两行，保证两个```在同一行
+    #例如：
+    #```AAAAAA
+    #```
+
     file_name = "origin_readme.md"
     #file_name = "origin_fastai_summary.md"
     #file_name = "origin_pytorch_summary.md"
 
     f = open(file_name, 'r', encoding='utf-8')
     insert_str = detectHeadLines(f)
+
     f.close()
     #截断origin_开头的文件，以后面的内容当作新md的命名
     new_file_name=file_name.split("origin_")[1]

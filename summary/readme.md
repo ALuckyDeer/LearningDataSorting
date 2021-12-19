@@ -14,7 +14,7 @@
 	- [ 经验补充](#head14)
 	- [ stackoverflow的KFlod和stratifiedKFold注解](#head15)
 	- [ 交叉验证的每个fold是一个不同的模型](#head16)
-- [ 这个讲解最为详细：精品中的精品！！!⭐⭐⭐⭐⭐](#head17)
+- [ 这个知乎的大神讲解最为详细：精品中的精品！！!⭐⭐⭐⭐⭐](#head17)
 - [ 斯透奇斯规则(Sturges'rule)](#head18)
 - [ 数据分箱之pd.cut()](#head19)
 - [ reshape新生成数组和原数组公用一个内存，不管改变哪个都会互相影响。](#head20)
@@ -29,11 +29,12 @@
 - [ 深度学习为什么要裁剪](#head29)
 - [ 思考：为什么卷积核通常用方形的？？？？？？？？？？？？？？？？](#head30)
 - [黑话 oof、cv、lb、corr、r、r2](#head31)
-- [ 黑话](#head32)
-- [ 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的](#head33)
-- [kaggle gpu连续使用会增加时常](#head34)
-- [unsupported operand type(s) for *: 'AccumMetric' and 'int'](#head35)
-- [ AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤(用作cv和LB的相关性分析)](#head36)
+- [ 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的](#head32)
+- [kaggle gpu连续使用会增加时常](#head33)
+- [unsupported operand type(s) for *: 'AccumMetric' and 'int'](#head34)
+- [ AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤(用作cv和LB的相关性分析)](#head35)
+- [mixup的说明  ](#head36)
+- [这个  ](#head37)
 # <span id="head1"> 机器学习经验整理</span>
 (拒绝拖延!!!)
 
@@ -189,7 +190,7 @@ stackoverflow上的note: https://stackoverflow.com/questions/54945196/sklearn-st
 **其实准确来说不是每个模型求和计算均值，应该是k次所有的数据帧
 来计算损失，看看精度是否满足预期。**
 
-# <span id="head17"> 这个讲解最为详细：精品中的精品！！!⭐⭐⭐⭐⭐</span>
+# <span id="head17"> 这个知乎的大神讲解最为详细：精品中的精品！！!⭐⭐⭐⭐⭐</span>
 明确理解交叉验证，我们可以分为3个维度去阐述这个问题：
 
 （1）训练集、验证集以及测试集的区分
@@ -331,22 +332,22 @@ R:模型做出的响应变量的观测值与响应变量的预测值之间的相
 
 R2:回归模型中可以被预测变量解释的方差在响应变量中的比例
 
-# <span id="head32"> 黑话</span>
-# <span id="head33"> 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的</span>
+
+# <span id="head32"> 提高LB与CV的方法，均方根误差在fold中按道理来说是不对的</span>
 假如得到5fold个结果，ABCDE，他们的均方差求平均是根号（平均值（A**2,B**2,C**2,D**2,E**2））
 与每个数据的loss都保存下载，最后对所有的loss一起求均方根误差  
 是有区别的，这算是一个提高LB与CV的方法  
 kaggle讲解：https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/293378  
 
-# <span id="head34">kaggle gpu连续使用会增加时常</span>
+# <span id="head33">kaggle gpu连续使用会增加时常</span>
 每个星期都用完了，结果这个星期给了41个小时的gpu
 ![](../img/img_11.png)
 
-# <span id="head35">unsupported operand type(s) for *: 'AccumMetric' and 'int'</span>
+# <span id="head34">unsupported operand type(s) for *: 'AccumMetric' and 'int'</span>
 创建一个实例就可以解决  
 详细讲解：https://forums.fast.ai/t/problem-with-f1scoremulti-metric/63721  
 
-# <span id="head36"> AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤(用作cv和LB的相关性分析)</span>
+# <span id="head35"> AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤(用作cv和LB的相关性分析)</span>
 ```angular2html
 AccumMetric(func, dim_argmax=None, activation='no', thresh=None, to_np=False, invert_arg=False, flatten=True, **kwargs) :: Metric
 ```
@@ -356,14 +357,18 @@ Stores predictions and targets on CPU in accumulate to perform final calculation
 假如有5个折，每一折有10个epoch，那么在每一折中，计算损失是使用一个epoch的预测和目标来进行计算的，
 在每次运行输出的时候，显示的是批分数，但是在最终训练好的时候，要的是rsme分数，这就会产生误差
 真正的均方根误差，就应该是把所有的折的预测和误差最后一起进行计算，而不是每个折进行计算完单个折的均方根误差，然后在相加求均值  
-```由于每个折叠都是 RMSE（均方根误差），您不能平均平方根并获得平方根。```  
+```由于每个折叠都是 RMSE（均方根误差），您不能平均平方根并获得平方根。
+```  
 使用这个函数可以将结果保存在cpu中，然后用func来进行计算，或者自己手动保存，最后进行计算。
-将预测和目标存储在CPU中，以使用func执行最终计算。
+将预测和目标存储在CPU中，以使用func执行最终计算。  
 kaggle大神讲解：https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/293378#1607804  
 
-# mixup
+# <span id="head36">mixup的说明  </span>
 fastai的mixup真的好用，在fastai中，默认的随机比例是0.4，混合其实就相当于图像叠加在一起看起来  
 fastai开发文档:https://docs.fast.ai/callback.mixup.html#MixUp  
 从数据层面解决过拟合的问题，属于数据增强方法
 从训练样本中随机抽取两个样本进行随机加权求和，标签样本也同样，然后预测结果与加权求和之后的标签求损失，最后反向更新  
 Implementation of https://arxiv.org/abs/1710.09412
+
+# <span id="head37">这个  </span>
+ 
