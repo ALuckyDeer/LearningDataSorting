@@ -1,7 +1,7 @@
 # 机器学习经验整理
 (拒绝拖延!!!)
 
-# kaggle_excel result archive
+# kaggle_excel result archives
 [PetFinder.my - Pawpularity Contest](../kaggle_excel/petfinder.xlsx)
 
 # 机器学习模型中的两类参数
