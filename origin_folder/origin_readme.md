@@ -1,6 +1,9 @@
 # 机器学习经验整理
 (拒绝拖延!!!)
 
+# kaggle_excel result archive
+[PetFinder.my - Pawpularity Contest](../kaggle_excel/petfinder.xlsx)
+
 # 机器学习模型中的两类参数
 
 一类需要从数据中学习和估计得到，称为模型参数（Parameter）---即模型本身的参数。比如，线性回归直线的加权系数（斜率）及其偏差项（截距）都是模型参数。
@@ -333,7 +336,6 @@ fastai开发文档:https://docs.fast.ai/callback.mixup.html#MixUp
 从训练样本中随机抽取两个样本进行随机加权求和，标签样本也同样，然后预测结果与加权求和之后的标签求损失，最后反向更新  
 Implementation of https://arxiv.org/abs/1710.09412
 
-# kaggle_excel result archive
-[PetFinder.my - Pawpularity Contest](../kaggle_excel/petfinder.xlsx)
+
 
  
