@@ -34,6 +34,7 @@
 - [unsupported operand type(s) for *: 'AccumMetric' and 'int'](#head34)
 - [ AccumMetric的精确用法（关于折内计算损失和折外总体计算的更准确的用法）❤❤❤❤❤❤❤❤❤(用作cv和LB的相关性分析)](#head35)
 - [mixup的说明  ](#head36)
+- [kaggle_excel result archive](#head37)
 # <span id="head1"> 机器学习经验整理</span>
 (拒绝拖延!!!)
 
@@ -369,5 +370,7 @@ fastai开发文档:https://docs.fast.ai/callback.mixup.html#MixUp
 从训练样本中随机抽取两个样本进行随机加权求和，标签样本也同样，然后预测结果与加权求和之后的标签求损失，最后反向更新  
 Implementation of https://arxiv.org/abs/1710.09412
 
+# <span id="head37">kaggle_excel result archive</span>
+[PetFinder.my - Pawpularity Contest](../kaggle_excel/petfinder.xlsx)
 
  

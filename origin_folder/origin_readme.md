@@ -333,5 +333,7 @@ fastai开发文档:https://docs.fast.ai/callback.mixup.html#MixUp
 从训练样本中随机抽取两个样本进行随机加权求和，标签样本也同样，然后预测结果与加权求和之后的标签求损失，最后反向更新  
 Implementation of https://arxiv.org/abs/1710.09412
 
+# kaggle_excel result archive
+[PetFinder.my - Pawpularity Contest](../kaggle_excel/petfinder.xlsx)
 
  
