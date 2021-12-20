@@ -62,7 +62,25 @@ Valley and Slide can be used intermittently (or together as I’ll show in a mom
 
 详细讲解：https://forums.fast.ai/t/new-lr-finder-output/89236  
 
-
+## 补充 旧的fastai1的文档中的说明
+lr_find给出的是如果suggestion=True将会的到最陡峭的点  
+If you pass suggestion=True in learn.recorder.plot, you will see the point where the gardient is the steepest with a
+red dot on the graph. We can use that point as a first guess for an LR.  
+```angular2html
+learn.lr_find(stop_div=False, num_it=200)
+learn.recorder.plot(suggestion=True)
+```
+```angular2html
+LR Finder is complete, type {learner_name}.recorder.plot() to see the graph.
+Min numerical gradient: 5.25E-03
+```
+![](../img/img_14.png)
+```angular2html
+min_grad_lr = learn.recorder.min_grad_lr#获取最陡峭的点的值
+min_grad_lr
+learn = simple_learner()
+simple_learner().fit(2, min_grad_lr)#fit进去
+```
 # learn.tta
 Learner.tta(ds_idx=1, dl=None, n=4, item_tfms=None, batch_tfms=None, beta=0.25, use_max=False)
 ds_idx=10 就是 dataloder[10]，它是个索引
