@@ -4,10 +4,11 @@
 - [ ImageDataLoaders.from_df](#head4)
 - [ learn.lr_find()学习率的选取怎样最好](#head5)
 - [lr_find() 新的用法](#head6)
-- [ learn.tta](#head7)
-- [ OldRandomCrop](#head8)
-- [ argmax(a)](#head9)
-- [ AccumMetric的精确用法❤❤❤❤❤❤❤❤❤](#head10)
+	- [补充 旧的fastai1的文档中的说明](#head7)
+- [ learn.tta](#head8)
+- [ OldRandomCrop](#head9)
+- [ argmax(a)](#head10)
+- [ AccumMetric的精确用法❤❤❤❤❤❤❤❤❤](#head11)
 # <span id="head1"> install</span>
 pip install fastai -i https://pypi.douban.com/simple
 
@@ -72,8 +73,26 @@ Valley and Slide can be used intermittently (or together as I’ll show in a mom
 
 详细讲解：https://forums.fast.ai/t/new-lr-finder-output/89236  
 
-
-# <span id="head7"> learn.tta</span>
+## <span id="head7">补充 旧的fastai1的文档中的说明</span>
+lr_find给出的是如果suggestion=True将会的到最陡峭的点  
+If you pass suggestion=True in learn.recorder.plot, you will see the point where the gardient is the steepest with a
+red dot on the graph. We can use that point as a first guess for an LR.  
+```angular2html
+learn.lr_find(stop_div=False, num_it=200)
+learn.recorder.plot(suggestion=True)
+```
+```angular2html
+LR Finder is complete, type {learner_name}.recorder.plot() to see the graph.
+Min numerical gradient: 5.25E-03
+```
+![](../img/img_14.png)
+```angular2html
+min_grad_lr = learn.recorder.min_grad_lr#获取最陡峭的点的值
+min_grad_lr
+learn = simple_learner()
+simple_learner().fit(2, min_grad_lr)#fit进去
+```
+# <span id="head8"> learn.tta</span>
 Learner.tta(ds_idx=1, dl=None, n=4, item_tfms=None, batch_tfms=None, beta=0.25, use_max=False)
 ds_idx=10 就是 dataloder[10]，它是个索引
 dl是dataloder数据加载器
@@ -95,16 +114,16 @@ In practice, we get the predictions n times with the transforms of the training 
 
 If you want to use new transforms, you can pass them with item_tfms and batch_tfms.
 
-# <span id="head8"> OldRandomCrop</span>
+# <span id="head9"> OldRandomCrop</span>
 OldRandomCrop(size, pad_mode='zeros', enc=None, dec=None, split_idx=None, order=None) :: CropPad
 
 随机裁剪并且填充0，相当于恢复
 
-# <span id="head9"> argmax(a)</span>
+# <span id="head10"> argmax(a)</span>
 取出a中元素最大值所对应的索引
 
 
-# <span id="head10"> AccumMetric的精确用法❤❤❤❤❤❤❤❤❤</span>
+# <span id="head11"> AccumMetric的精确用法❤❤❤❤❤❤❤❤❤</span>
 ```angular2html
 AccumMetric(func, dim_argmax=None, activation='no', thresh=None, to_np=False, invert_arg=False, flatten=True, **kwargs) :: Metric
 ```

@@ -1,5 +1,5 @@
 - [ 机器学习经验整理](#head1)
-- [kaggle_excel result archive](#head2)
+- [kaggle_excel result archives](#head2)
 - [ 机器学习模型中的两类参数](#head3)
 - [ 参数和超参数的区别](#head4)
 - [ 哪些属于超参数](#head5)
@@ -38,7 +38,7 @@
 # <span id="head1"> 机器学习经验整理</span>
 (拒绝拖延!!!)
 
-# <span id="head2">kaggle_excel result archive</span>
+# <span id="head2">kaggle_excel result archives</span>
 [PetFinder.my - Pawpularity Contest](../kaggle_excel/petfinder.xlsx)
 
 # <span id="head3"> 机器学习模型中的两类参数</span>
