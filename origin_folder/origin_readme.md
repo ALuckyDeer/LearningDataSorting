@@ -142,7 +142,11 @@ random_state：默认为None，表示随机数的种子，只有当shuffle设置
 与submission的LB结果最终有个对比，这就是分层抽样的好处~~  
 
 注意：假如数据样本是回归任务的数据，不是分类的，就不能用StratifiedKFold了,只能用KFold  
-StratifiedKFlod：分层采样，训练集与验证集中各类别样本的比列与原始数据中相同；（分类问题）  
+
+![](../img/img_16.png)
+StratifiedKFlod：分层采样，训练集与验证集中各类别样本的比列与原始数据中相同；（分类问题） 
+
+![](../img/img_15.png)
 KFlod：将数据分成训练集和验证集，不考虑训练集与测试集中各类别数据是否相同；（回归问题）   
 ![](../img/img_12.png)  
 例如：比如说100个samples,里面有90个A类，10个B类，假设使用KFold这个莽类，n_splits=10,由于KFold太莽，我分成10段，可能前9段就都是同一个类
