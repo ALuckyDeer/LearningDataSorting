@@ -340,9 +340,13 @@ fastai开发文档:https://docs.fast.ai/callback.mixup.html#MixUp
 从训练样本中随机抽取两个样本进行随机加权求和，标签样本也同样，然后预测结果与加权求和之后的标签求损失，最后反向更新  
 Implementation of https://arxiv.org/abs/1710.09412
 
-# K折交叉验证只是为了寻找效果最好的超参数，最后还要使用找到的相对最好的超参数对整体的数据进行训练
+# K折交叉验证只是为了寻找效果相对最好的超参数
+K折交叉验证结束之后，获取相对最优的模型超参数之后有两个方法进行测试集的预测：  
+>*修改完较好的超参数，重新训练，在每一折训练好之后，对测试集进行预测，并进行保存，等到所有折都预测保存结束之后，对保存的结果取均值  
+>*修改完较好的超参数，重新对全部数据集进行训练，然后对测试机进行预测，直接得到结果  
+>*两个哪个最优等我研究研究？  
 问题讲解：https://qastack.cn/stats/52274/how-to-choose-a-predictive-model-after-k-fold-cross-validation
-
+知乎问答：https://zhuanlan.zhihu.com/p/67986077
 
 
  
